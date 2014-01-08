@@ -2,7 +2,7 @@ I got curious once to see where my linux packages come from
 and that lead to this effort:
 
 Tool #1: yumpkgperurls.py
-Shows which URL/source linux packages come from.
+Shows which URL/source yum packages come from.
 
 
-Feel free to add more tools, add tools for debian packages, modify existing ones.
+Feel free to add tools for debian packages, add other tools, modify existing ones.
