@@ -6,3 +6,9 @@ Shows which URL/source yum packages come from.
 
 
 Feel free to add tools for debian packages, add other tools, modify existing ones.
+
+
+TODO/WISH LIST:
+
+- Currently the use of cachefile is unintelligent.
+  Use 'yum history' to turn it smart
