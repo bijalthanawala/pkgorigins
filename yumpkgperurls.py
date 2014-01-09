@@ -25,8 +25,10 @@ def gen_pkgperurl():
         if tag == 'Name':
             prevpkg = value 
         elif tag == 'URL':
-            pkgnames = urldict.setdefault(value, [])
-            pkgnames.append(prevpkg)
+            # Use set instead of list to avoid duplicate entries of
+            # packages with same name but diffrent architectures
+            pkgnameset = urldict.setdefault(value, set())
+            pkgnameset.add(prevpkg)
     fp.close()
     pprint(urldict)
 
