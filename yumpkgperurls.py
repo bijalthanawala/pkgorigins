@@ -1,7 +1,6 @@
 #! /usr/bin/python
 
 import os
-from pprint import pprint
 
 # Currently cache file is unintelligent
 # Todo: Use yum history to smartly determine if
@@ -30,13 +29,20 @@ def gen_pkgperurl():
             pkgnameset = urldict.setdefault(value, set())
             pkgnameset.add(prevpkg)
     fp.close()
-    pprint(urldict)
+    return urldict
 
 def gen_pkginfo():
     fp = open(filename, 'w')
     for l in os.popen("yum info | grep -E '^Name|^URL'"):
         fp.write(l)
     fp.close()
+
+def print_urldict(urldict):
+    for (url, pkgset) in urldict.items():
+        print url
+        for pkg in pkgset:
+            print pkg
+        print
 
 def main():
     # First check if cache file exists
@@ -45,7 +51,8 @@ def main():
         gen_pkginfo()
 
     # Now run the analysis
-    gen_pkgperurl()
+    urldict = gen_pkgperurl()
+    print_urldict(urldict)
 
 
 if __name__ == '__main__':
